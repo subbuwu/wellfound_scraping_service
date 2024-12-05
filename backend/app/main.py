@@ -1,4 +1,3 @@
-import os
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from dotenv import load_dotenv
@@ -14,14 +13,16 @@ class SearchRequest(BaseModel):
 
 @app.post("/search-jobs")
 async def search_jobs(request: SearchRequest):
-    """
-    Search for job listings on Wellfound
-    """
     try:
+        # call class
         scraper = WellfoundJobScraper()
+        
+        # call the search_jobs method
         jobs = scraper.search_jobs(
             userCustomJobTitles=request.userKeywords
         )
+        
+        #return final result to frontend
         return jobs
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))  

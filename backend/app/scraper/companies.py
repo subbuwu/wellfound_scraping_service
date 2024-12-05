@@ -44,7 +44,7 @@ class WellfoundJobScraper:
         self, 
         userCustomJobTitles : List[str]
     ) -> List[Dict]:
-        # GraphQL payload 
+        # GraphQL payload to send
         payload = {
             "operationName": "JobSearchResultsX",
             "variables": {
@@ -74,6 +74,7 @@ class WellfoundJobScraper:
         }
 
         try:
+            # sending http request with graphql payload
             response = requests.post(
                 "https://wellfound.com/graphql",
                 json=payload,
@@ -83,9 +84,11 @@ class WellfoundJobScraper:
             response.raise_for_status()
 
             try:
+                # convert the returned data to json
                 data = response.json()
                 jobs = []
                 
+                # clean the data to get job name , salary etc
                 for edge in data['data']['talent']['jobSearchResults']['startups']['edges']:
                     node = edge.get('node', {})
                     if node.get('__typename') == 'StartupSearchResult':
@@ -115,6 +118,8 @@ class WellfoundJobScraper:
                                 'salary': job_listing.get('compensation', 'N/A'),
                                 'company_type' : 'FeaturedStartups'
                             })
+                 
+                # return final result            
                 return jobs
                 
             except json.JSONDecodeError as e:
