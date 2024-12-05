@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pydantic
+pydantic_settings
+beautifulsoup4
+requests
+python-dotenv
+aiohttp
+httpx
