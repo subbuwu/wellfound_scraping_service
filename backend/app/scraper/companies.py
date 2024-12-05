@@ -1,14 +1,11 @@
-import time
 import json
 import requests
-from collections import namedtuple
-from typing import List, Dict, Optional
+from typing import List, Dict
 import brotli
 
 class WellfoundJobScraper:
-    def __init__(self,driver):
-        self.driver = driver
-        # Detailed headers to mimic the browser request
+    def __init__(self):
+        # mimic the browser request
         self.headers = {
             # ":authority:": "wellfound.com",
             # ":method:": "POST",
@@ -34,7 +31,7 @@ class WellfoundJobScraper:
             "Cookie" : "ajs_anonymous_id=3f74e26f-6910-40a6-8f20-73b54c51cd4c; logged_in=true; _wellfound=7a4a660a0b0493b2d15323a3e3015b4d.i; cf_clearance=_lbT17d7VRUJIkOqXTBg6SdM8r9pCiOmQRnlERLAD54-1733401166-1.2.1.1-VYLkX2Kvyn9Op_u0hIolbaBurrkJDQc5kZyYwq9FXgWS02Df.aQ6ERtPdojm4US1o0dco7h4SPz2jeGy5ngeZA3U3ZjIL2usFRX8_dgT7W0ho35T3.QLR_ur6DdxWRbEcA7Rzv4fk1jrqndXCAOhRzPWV3vPspxOcWZmixpG.14ao7NZkTBlKXPIbLO0fx4einwxwyjRGb1F1LGp2fG9WX7uibawGERHhMEvZhqIBTOKyA.O2yRU9.tcZcVEmC.3fCWw3YAK1n26cbWkGncnHxxi5FJLFOuQxADJGe5kROxBkDlWNG41b1QFS2a51qnf6SyQdJTa09566qL7vqhv7q5foA.Cwkk8qz4_4eqRF0NliPvg1B07KO6fMqKcqXePZL57JorpMcrLJyZ24FnM4g; datadome=zW_~Hg0R7nywHAPZtYemNwNKcT5l7sYdDOd10QTYuruj0cbSIN_t2CbQcMgV61ULQ3Atk_Db4XZl8Hq0SDplY88vl3tYc1wN1uHbWiRZi69NB70mo64auCKOb4U2Ch96"
         }
 
-        # Detailed cookies to bypass blocking
+        # attach the cookies
         self.cookies = {
             "ajs_anonymous_id": "4b1d4467-7819-49ca-8779-8d1c1d72e6f3",
             "logged_in": "true",
@@ -45,28 +42,17 @@ class WellfoundJobScraper:
 
     def search_jobs(
         self, 
-        query: Optional[str] = None, 
-        page: int = 1, 
-        remote_only: bool = True
+        userCustomJobTitles : List[str]
     ) -> List[Dict]:
-        """
-        Search for job listings with advanced request configuration
-        
-        :param query: Search keywords
-        :param page: Page number of results
-        :param remote_only: Only remote jobs
-        :return: List of job listings
-        """
         # GraphQL payload 
-        userCustomJobTitles = ["ios"]
         payload = {
             "operationName": "JobSearchResultsX",
             "variables": {
                 "filterConfigurationInput": {
                     "page": 1,
-                    "customJobTitles": [
-                        "Objective-C"
-                    ],
+                    "customJobTitles": 
+                        userCustomJobTitles
+                    ,
                     "equity": {
                         "min": None,
                         "max": None
@@ -88,47 +74,37 @@ class WellfoundJobScraper:
         }
 
         try:
-            # Make the request with detailed headers and cookies
             response = requests.post(
                 "https://wellfound.com/graphql",
                 json=payload,
                 headers=self.headers,
                 cookies=self.cookies
             )
-
-            # Check if request was successful
             response.raise_for_status()
-
 
             try:
                 data = response.json()
-                print(data)
                 jobs = []
                 
                 for edge in data['data']['talent']['jobSearchResults']['startups']['edges']:
-                    # Check for different node types and extract accordingly
                     node = edge.get('node', {})
-                    
-                    # Handle StartupSearchResult type
                     if node.get('__typename') == 'StartupSearchResult':
                         job_listing = node.get('highlightedJobListings', [{}])[0]
                         jobs.append({
                             'job_title': job_listing.get('title', 'N/A'),
                             'company_name': node.get('name', 'N/A'),
-                            'salary': job_listing.get('compensation', 'N/A')
+                            'salary': job_listing.get('compensation', 'N/A'),
+                            'company_type' : 'StartupSearchResult'
                         })
-                    
-                    # Existing handling for other types (PromotedResult, FeaturedStartups)
                     elif node.get('__typename') == 'PromotedResult':
                         job_node = node.get('promotedStartup', node)
                         job_listing = job_node.get('highlightedJobListings', [{}])[0]
                         jobs.append({
                             'job_title': job_listing.get('title', 'N/A'),
                             'company_name': job_node.get('name', 'N/A'),
-                            'salary': job_listing.get('compensation', 'N/A')
+                            'salary': job_listing.get('compensation', 'N/A'),
+                            'company_type' : 'PromotedResult'
                         })
-                    
-                    # Handle FeaturedStartups
                     elif node.get('__typename') == 'FeaturedStartups':
                         for featured_job in node.get('featuredStartups', []):
                             job_node = featured_job.get('promotedStartup', featured_job)
@@ -136,21 +112,17 @@ class WellfoundJobScraper:
                             jobs.append({
                                 'job_title': job_listing.get('title', 'N/A'),
                                 'company_name': job_node.get('name', 'N/A'),
-                                'salary': job_listing.get('compensation', 'N/A')
+                                'salary': job_listing.get('compensation', 'N/A'),
+                                'company_type' : 'FeaturedStartups'
                             })
-                
-                print(jobs)
                 return jobs
-                
                 
             except json.JSONDecodeError as e:
                 print(f"JSON Decode Error: {e}")
                 decompressed_data = brotli.decompress(response.content)
                 data = json.loads(decompressed_data)
                 print('decompressed data : ',data) 
-                return False
-
-            
+                return False          
 
         except requests.RequestException as e:
             print(f"Error fetching jobs: {e}")
