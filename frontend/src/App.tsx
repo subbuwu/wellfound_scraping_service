@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
+import { 
+  Sparkles, 
+  Zap, 
+  Filter, 
+  TrendingUp, 
+  Star, 
+  Github
+} from 'lucide-react';
 import JobsList from './components/JobsList';
 import SearchForm from './components/SearchForm';
-import { Card, CardContent } from './components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from './components/ui/card';
+import { Button } from './components/ui/button';
+import { Toaster, toast } from "sonner";
 import { Job, CompanyType } from './types';
-import { Toaster,toast } from "sonner"
 
 const App: React.FC = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
@@ -49,25 +58,98 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-blue-50 py-8" style={{fontFamily : "Inter"}}>
+    <div 
+      className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 
+      py-8 relative overflow-hidden"
+      style={{fontFamily: "Inter"}}
+    >
+      <div 
+        className="absolute top-[-10%] right-[-10%] w-96 h-96 
+        bg-yellow-200 rounded-full opacity-30 blur-3xl"
+      />
+      <div 
+        className="absolute top-[-10%] left-[-10%] w-96 h-96 
+        bg-yellow-200 rounded-full opacity-30 blur-3xl"
+      />
+
       <Toaster richColors position='top-center'/>
-      <div className="xl:max-w-[95%] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h1 className="mt-2 text-center tracking-tight font-semibold text-4xl text-[#1E0E62] sm:text-5xl"
-          style={{fontFamily : "Poppins"}}
-          >
-            Wellfound Job Scraper Service
-          </h1>
-          <span><a className='text-lg underline text-neutral-800 transition-all duration-100 hover:text-blue-500' href="https://github.com/subbuwu/wellfound_scraping_service" target='__blank'>Repo Link</a></span>
+      
+      <div className="xl:max-w-[95%] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Hero Section */}
+        <div className="text-center mb-12">
+          <div className="flex justify-center items-center space-x-4 mb-4">
+
+            <h1 
+              className="tracking-tight font-bold text-4xl text-transparent 
+              bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 
+              sm:text-5xl flex gap-0.5"
+              style={{fontFamily: "Poppins"}}
+            >
+              <svg fill="currentColor" viewBox="0 0 554.89997 266.70002" width="50" className="mt-2 text-black"><path d="M 80.9,263.59999 0,2.9999988 H 75.3 L 123,190.39999 174.9,2.9999988 h 75.5 L 302.3,190.39999 350,2.9999988 h 75.3 L 343.5,263.59999 H 263.3 L 212.7,75.399999 161.1,263.59999 H 80.9 Z"></path><circle cx="511.09995" cy="222.89999" fill="#EC2E3A" r="43.799999"></circle><circle cx="511.09995" cy="43.799999" fill="#EC2E3A" r="43.799999"></circle></svg>
+              ellfound Job Scraper
+            </h1>
+          </div>
           
-          <Card className="my-8 max-w-lg mx-auto">
+          <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500">
+            Discover your next opportunity with intelligent job search and startup insights
+          </p>
+
+          <div className="flex justify-center space-x-4 mt-6">
+            <a href="https://github.com/subbuwu/wellfound_scraping_service" target="_blank" rel="noopener noreferrer">
+              <Button 
+                variant="outline" 
+                className="border-purple-300 hover:bg-purple-50 
+                group transition-all duration-300 
+                hover:border-purple-500"
+              >
+                <Github className="mr-2 group-hover:rotate-[360deg] transition-transform duration-500" />
+                View Project
+              </Button>
+            </a>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
+          <Card className="md:col-span-2 backdrop-blur-sm bg-white/70  transition-all duration-300 
+          border-purple-100 border-2">
             <CardContent className="pt-6">
               <SearchForm onSearch={fetchJobs} loading={loading} />
             </CardContent>
           </Card>
-          
-          <JobsList jobs={jobs} loading={loading} />
+
+          <Card className="backdrop-blur-sm bg-white/70 
+          hover:shadow-xl transition-all duration-300
+          border-blue-100 border-2 hidden md:block">
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Sparkles className="mr-2 text-purple-600" />
+                Quick Search Features
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <div className="flex items-center">
+                  <Zap className="mr-2 text-blue-500" />
+                  <span>Multiple Keyword Search</span>
+                </div>
+                <div className="flex items-center">
+                  <Filter className="mr-2 text-green-500" />
+                  <span>Smart Job Filtering</span>
+                </div>
+                <div className="flex items-center">
+                  <TrendingUp className="mr-2 text-purple-500" />
+                  <span>Prioritized Results</span>
+                </div>
+                <div className="flex items-center">
+                  <Star className="mr-2 text-yellow-500" />
+                  <span>Featured Startup Highlights</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
+        
+        <JobsList jobs={jobs} loading={loading} />
       </div>
     </div>
   );
