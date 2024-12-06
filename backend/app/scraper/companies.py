@@ -26,18 +26,18 @@ class WellfoundJobScraper:
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
             "X-Angellist-D-Client-Referrer-Resource": "/jobs",
             "X-Apollo-Operation-Name": "JobSearchResultsX",
-            "X-Apollo-Signature" : "1733401165-LvEj0wYsOIy%2BzSx2NAdVxKIxX3gefRPh2AakHunyUpE%3D",
+            "X-Apollo-Signature" : "1733480218-HehiAdyALuUPku2dYmWQW1zJ8bV5wq5kqGs6kxDdTws%3D",
             "X-Requested-With": "XMLHttpRequest",
-            "Cookie" : "ajs_anonymous_id=3f74e26f-6910-40a6-8f20-73b54c51cd4c; logged_in=true; _wellfound=7a4a660a0b0493b2d15323a3e3015b4d.i; cf_clearance=_lbT17d7VRUJIkOqXTBg6SdM8r9pCiOmQRnlERLAD54-1733401166-1.2.1.1-VYLkX2Kvyn9Op_u0hIolbaBurrkJDQc5kZyYwq9FXgWS02Df.aQ6ERtPdojm4US1o0dco7h4SPz2jeGy5ngeZA3U3ZjIL2usFRX8_dgT7W0ho35T3.QLR_ur6DdxWRbEcA7Rzv4fk1jrqndXCAOhRzPWV3vPspxOcWZmixpG.14ao7NZkTBlKXPIbLO0fx4einwxwyjRGb1F1LGp2fG9WX7uibawGERHhMEvZhqIBTOKyA.O2yRU9.tcZcVEmC.3fCWw3YAK1n26cbWkGncnHxxi5FJLFOuQxADJGe5kROxBkDlWNG41b1QFS2a51qnf6SyQdJTa09566qL7vqhv7q5foA.Cwkk8qz4_4eqRF0NliPvg1B07KO6fMqKcqXePZL57JorpMcrLJyZ24FnM4g; datadome=zW_~Hg0R7nywHAPZtYemNwNKcT5l7sYdDOd10QTYuruj0cbSIN_t2CbQcMgV61ULQ3Atk_Db4XZl8Hq0SDplY88vl3tYc1wN1uHbWiRZi69NB70mo64auCKOb4U2Ch96"
+            "Cookie" : "ajs_anonymous_id=3f74e26f-6910-40a6-8f20-73b54c51cd4c; logged_in=true; _wellfound=7a4a660a0b0493b2d15323a3e3015b4d.i; cf_clearance=59QHPanuNUpB3mseetZLy2awu3UmoaytD.E.KPRw45c-1733480220-1.2.1.1-R8cuEitpoHtMWLrsPywnwYeGF8zB9I1GdzBg8ScWwmn9hPWJNfdZzYDofC63UzgV4S.h0RS9I.89kesiC1I5XFWJY4SEvHCc2p3J5ywF7FrrMAekG2SKCInr9ZiWb7IGKaD5kUPhj_wunW5e_QApgg_s73DL2vpLTtyk1.YupLxh1rYgHDu7aRmsrzFxs4z6UVP7sukPhMIXt2gWMg8C5mb_7R.040GpPyWcqSEa3UqhnJdRj02gCgNoklmKaGM5WPk5czCnsepYIHAQ6sPdA42el3bg6j9lB9zoI1j9uz6EPFIULDp1RqlkgdAEeOm3V5LgawTOYNU9aae4O3Dh12hZzSP_bKf1Zhy0CkzdLZwrFIXKKQMoifr8eLk_aOK._5P3ymrTQr0L2tWcBuK7RT67E4Gg2SbpgkH2CXgJpd0; _mkra_stck=105d3fa4432a62065203cb85b17464b1%3A1733480253.90747; datadome=wipxH3SJIEvYJc4P2fp7b62vuKdJ3faX2lck_~FgGmfkdt~RqG_DBVv1TPWX1GMAh1enVZTBSVfrun188dl4ICIN~T2baoqI~OQMMK899H2l~Gd_xSQYfVC6s7Sybs5z"
         }
 
         # attach the cookies
         self.cookies = {
-            "ajs_anonymous_id": "4b1d4467-7819-49ca-8779-8d1c1d72e6f3",
+            "ajs_anonymous_id": "3f74e26f-6910-40a6-8f20-73b54c51cd4c",
             "logged_in": "true",
-            "*wellfound": "0baa98d6e90b3ef6cbfb7ddfec24455f.i",
-            "cf*clearance": "bw5pe5Uty588d848uqRDSi7hhukmBf2VTxPATemtVbU-1733400444-1.2.1.1-vFuLJlo.phKl0Ehn5E04DemIJMB4NrfqIRKuB9ITCNk_nrKp9uBRzFBm9ahAEiwPFVC3pTnr9mcoF1eqhNmluYxHZ1FWsJ9vVKCkrDI4S90FKrt0OlXQybj1LBmK3.v41nV69zTJQ7C6ab0h2.Ohw28F.Lp2CGX5BjpZO4qhiqhgztF0qOqFwo0CxfpA6LtBS.odM2forIab0Grg855ZA5Sy1zgQg3sP4FDNznq5TK2QD1MSo0VgdBhF0yttHyD1DOl9bGRY8rLqA88D1aDuarhX1hU6TEczq.wtayGg.E04STv5vQYOX4ejB2TFWw7qT7EefEAsJ1Ya2bv4tTF_R.Kr8hontJd2CttNp3..q.pbYRlgnDhj5UUfesgr1nFhzSF.HIg_ho9XfifSEN0KfQ",
-            "datadome": "u6tjZE25IxyBtD5bHoY3W94~N2L7OAoZ_pJddcz4sZIApjTvLiAyj_VWVBCxVfgxawQFZTlH6qvBhPVqVSNeqyvkZ8uYAHXfvBTZrgevqgZ1E~u~ITrXynvNDGNNh37H"
+            "*wellfound": "7a4a660a0b0493b2d15323a3e3015b4d.i",
+            "cf*clearance": "59QHPanuNUpB3mseetZLy2awu3UmoaytD.E.KPRw45c-1733480220-1.2.1.1-R8cuEitpoHtMWLrsPywnwYeGF8zB9I1GdzBg8ScWwmn9hPWJNfdZzYDofC63UzgV4S.h0RS9I.89kesiC1I5XFWJY4SEvHCc2p3J5ywF7FrrMAekG2SKCInr9ZiWb7IGKaD5kUPhj_wunW5e_QApgg_s73DL2vpLTtyk1.YupLxh1rYgHDu7aRmsrzFxs4z6UVP7sukPhMIXt2gWMg8C5mb_7R.040GpPyWcqSEa3UqhnJdRj02gCgNoklmKaGM5WPk5czCnsepYIHAQ6sPdA42el3bg6j9lB9zoI1j9uz6EPFIULDp1RqlkgdAEeOm3V5LgawTOYNU9aae4O3Dh12hZzSP_bKf1Zhy0CkzdLZwrFIXKKQMoifr8eLk_aOK._5P3ymrTQr0L2tWcBuK7RT67E4Gg2SbpgkH2CXgJpd0; _mkra_stck=105d3fa4432a62065203cb85b17464b1%3A1733480253.90747",
+            "datadome": "wipxH3SJIEvYJc4P2fp7b62vuKdJ3faX2lck_~FgGmfkdt~RqG_DBVv1TPWX1GMAh1enVZTBSVfrun188dl4ICIN~T2baoqI~OQMMK899H2l~Gd_xSQYfVC6s7Sybs5z"
         }
 
     def search_jobs(
@@ -82,7 +82,10 @@ class WellfoundJobScraper:
                 cookies=self.cookies
             )
             response.raise_for_status()
-
+            if(response.status_code == 403 or response.status_code == 500 or response.status_code == 404) :
+                print(f"Error fetching jobs: {e}")
+                return False
+            
             try:
                 # convert the returned data to json
                 data = response.json()
@@ -123,7 +126,7 @@ class WellfoundJobScraper:
                 return jobs
                 
             except json.JSONDecodeError as e:
-                print(f"JSON Decode Error: {e}")
+                print("JSON Decode Error , attempting brotli decoding")
                 decompressed_data = brotli.decompress(response.content)
                 data = json.loads(decompressed_data)
                 print('decompressed data : ',data) 
@@ -131,4 +134,4 @@ class WellfoundJobScraper:
 
         except requests.RequestException as e:
             print(f"Error fetching jobs: {e}")
-            return []
+            return False
