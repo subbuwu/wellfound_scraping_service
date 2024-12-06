@@ -1,4 +1,4 @@
-# Wellfound Job Scraper [Watch the app in action](https://www.dropbox.com/scl/fi/ijfxociwr6569i78wasqf/demo_working_wf_scraping.mov?rlkey=6o5s08lud20x2fqbxko3jo0n5&st=87lr7t46&dl=0)
+# Wellfound Job Scraper [(Watch the app in action)](https://www.dropbox.com/scl/fi/ijfxociwr6569i78wasqf/demo_working_wf_scraping.mov?rlkey=6o5s08lud20x2fqbxko3jo0n5&st=87lr7t46&dl=0)
 
 ## Overview
 
