@@ -126,6 +126,9 @@ class WellfoundJobScraper:
                 return jobs
                 
             except json.JSONDecodeError as e:
+                # first hit endpoint -> /graphql -> data encoded (br) -> json()
+                # subsequent req -> you dont need to decode it
+                # binary / br 
                 print("JSON Decode Error , attempting brotli decoding")
                 decompressed_data = brotli.decompress(response.content)
                 data = json.loads(decompressed_data)

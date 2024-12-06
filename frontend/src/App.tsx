@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { 
-  Sparkles, 
   Zap, 
   Filter, 
   TrendingUp, 
@@ -64,11 +63,11 @@ const App: React.FC = () => {
       style={{fontFamily: "Inter"}}
     >
       <div 
-        className="absolute top-[-10%] right-[-10%] w-96 h-96 
+        className="fixed top-[20%] right-[10%] w-80 h-80 
         bg-yellow-200 rounded-full opacity-30 blur-3xl"
       />
       <div 
-        className="absolute top-[-10%] left-[-10%] w-96 h-96 
+        className="fixed top-[20%] left-[20%] w-80 h-80 
         bg-yellow-200 rounded-full opacity-30 blur-3xl"
       />
 
@@ -122,7 +121,6 @@ const App: React.FC = () => {
           border-blue-100 border-2 hidden md:block">
             <CardHeader>
               <CardTitle className="flex items-center">
-                <Sparkles className="mr-2 text-purple-600" />
                 Quick Search Features
               </CardTitle>
             </CardHeader>
