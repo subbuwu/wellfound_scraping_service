@@ -97,5 +97,3 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Contact
 
 Subramanian - nsubbu2004@gmail.com
-
-Project Link: [https://github.com/yourusername/wellfound-job-scraper](https://github.com/yourusername/wellfound-job-scraper)
