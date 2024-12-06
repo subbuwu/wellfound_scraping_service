@@ -4,6 +4,8 @@
 
 A full-stack job scraping application that enables users to search for jobs on Wellfound using custom keywords. The project leverages FastAPI for the backend, React with Vite and Tailwind CSS for the frontend, and implements sophisticated web scraping techniques to bypass anti-bot security measures.
 
+## Docs - Checkout http://localhost:8000/docs after running local python fastapi backend server
+
 ## Tech Stack
 
 ### Backend
