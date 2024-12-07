@@ -26,7 +26,7 @@ class WellfoundJobScraper:
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
             "X-Angellist-D-Client-Referrer-Resource": "/jobs",
             "X-Apollo-Operation-Name": "JobSearchResultsX",
-            "X-Apollo-Signature" : "1733480218-HehiAdyALuUPku2dYmWQW1zJ8bV5wq5kqGs6kxDdTws%3D",
+            "X-Apollo-Signature" : "1733575053-06CP%2B%2FVaX2DzUxkzcqL2c0XBIwrYw5CLCYLYZIex6bg%3D",
             "X-Requested-With": "XMLHttpRequest",
             "Cookie" : "ajs_anonymous_id=3f74e26f-6910-40a6-8f20-73b54c51cd4c; logged_in=true; _wellfound=7a4a660a0b0493b2d15323a3e3015b4d.i; cf_clearance=59QHPanuNUpB3mseetZLy2awu3UmoaytD.E.KPRw45c-1733480220-1.2.1.1-R8cuEitpoHtMWLrsPywnwYeGF8zB9I1GdzBg8ScWwmn9hPWJNfdZzYDofC63UzgV4S.h0RS9I.89kesiC1I5XFWJY4SEvHCc2p3J5ywF7FrrMAekG2SKCInr9ZiWb7IGKaD5kUPhj_wunW5e_QApgg_s73DL2vpLTtyk1.YupLxh1rYgHDu7aRmsrzFxs4z6UVP7sukPhMIXt2gWMg8C5mb_7R.040GpPyWcqSEa3UqhnJdRj02gCgNoklmKaGM5WPk5czCnsepYIHAQ6sPdA42el3bg6j9lB9zoI1j9uz6EPFIULDp1RqlkgdAEeOm3V5LgawTOYNU9aae4O3Dh12hZzSP_bKf1Zhy0CkzdLZwrFIXKKQMoifr8eLk_aOK._5P3ymrTQr0L2tWcBuK7RT67E4Gg2SbpgkH2CXgJpd0; _mkra_stck=105d3fa4432a62065203cb85b17464b1%3A1733480253.90747; datadome=wipxH3SJIEvYJc4P2fp7b62vuKdJ3faX2lck_~FgGmfkdt~RqG_DBVv1TPWX1GMAh1enVZTBSVfrun188dl4ICIN~T2baoqI~OQMMK899H2l~Gd_xSQYfVC6s7Sybs5z"
         }
@@ -138,3 +138,79 @@ class WellfoundJobScraper:
         except requests.RequestException as e:
             print(f"Error fetching jobs: {e}")
             return False
+    
+    def send_message(
+        self, 
+        userMessage : str
+    ) -> List[Dict]:
+        # GraphQL payload to send
+        payload = {
+            "operationName": "CandidateSendMessage",
+            "variables": {
+                "input": {
+                    "id": "965987617",
+                    "type": "JOBPAIRING",
+                    "body": userMessage
+                }
+            },
+            "extensions": {
+                "operationId": "tfe/1ee8d94da36a0811d05340d91a4427175dbb8abfafe2dab802483d375fdcfb7d"
+            }
+        }
+
+        try:
+            # sending http request with graphql payload
+            response = requests.post(
+                "https://wellfound.com/graphql",
+                json=payload,
+                headers=self.headers,
+                cookies=self.cookies
+            )
+            response.raise_for_status()
+            
+            data = response.json()
+            
+            if(response.status_code == 200 or response.status_code == 201):
+                return data 
+
+        except requests.RequestException as e:
+            print(f"Error sending messages: {e}")
+            return False
+
+    
+    def get_all_messages(
+        self
+    ) -> List[Dict]:
+        # GraphQL payload to send
+        payload = {
+            "operationName": "ConversationModal",
+            "variables": {
+                "id": "965987617",
+                "type": "JOBPAIRING"
+            },
+            "extensions": {
+                "operationId": "tfe/c53fe96a11cd1ea9563628fa1f30097ea8c80ba3867a81b486e77d400e3fb7da"
+            }
+        }
+
+        try:
+            # sending http request with graphql payload
+            response = requests.post(
+                "https://wellfound.com/graphql",
+                json=payload,
+                headers=self.headers,
+                cookies=self.cookies
+            )
+            response.raise_for_status()
+            
+            data = response.json()
+            
+            if(response.status_code == 200 or response.status_code == 201):
+                return data 
+
+        except requests.RequestException as e:
+            print(f"Error sending messages: {e}")
+            return False
+
+
+

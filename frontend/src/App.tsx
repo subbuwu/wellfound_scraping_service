@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import JobsList from './components/JobsList';
 import SearchForm from './components/SearchForm';
+import ConvoBox from './components/ConvoBox';
 import { Card, CardContent, CardHeader, CardTitle } from './components/ui/card';
 import { Button } from './components/ui/button';
 import { Toaster, toast } from "sonner";
@@ -77,7 +78,6 @@ const App: React.FC = () => {
         {/* Hero Section */}
         <div className="text-center mb-12">
           <div className="flex justify-center items-center space-x-4 mb-4">
-
             <h1 
               className="tracking-tight font-bold text-4xl text-transparent 
               bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 
@@ -147,7 +147,12 @@ const App: React.FC = () => {
           </Card>
         </div>
         
-        <JobsList jobs={jobs} loading={loading} />
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="md:col-span-3">
+            <JobsList jobs={jobs} loading={loading} />
+          </div>
+          <ConvoBox />
+        </div>
       </div>
     </div>
   );

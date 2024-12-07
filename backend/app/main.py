@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from dotenv import load_dotenv
-from .scraper.companies import WellfoundJobScraper
+from .scraper.services import WellfoundJobScraper
 from typing import List
 
 load_dotenv()
@@ -27,6 +27,9 @@ app.add_middleware(
 
 class SearchRequest(BaseModel):
     userKeywords: List[str] = None
+    
+class SendMessageRequest(BaseModel):
+    userMessage : str = None
 
 @app.post("/search-jobs")
 async def search_jobs(request: SearchRequest):
@@ -43,3 +46,28 @@ async def search_jobs(request: SearchRequest):
         return jobs
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))  
+    
+@app.post('/send-message')
+async def send_message(request:SendMessageRequest):
+    try:
+        scraper = WellfoundJobScraper()
+        
+        messageRes = scraper.send_message(
+            userMessage=request.userMessage
+        )
+        
+        return messageRes
+    except Exception as e:
+        raise HTTPException(status_code=500,detail=str(e))
+    
+    
+@app.post('/get-all-messages')
+async def get_all_messages():
+    try :
+        scraper = WellfoundJobScraper()
+        
+        allMessages = scraper.get_all_messages()
+        
+        return allMessages
+    except Exception as e:
+        raise HTTPException(status_code=500,detail=str(e))
