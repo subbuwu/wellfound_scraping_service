@@ -1,8 +1,11 @@
-# Wellfound Job Scraper - Manual Header/Cookie Injection [(Watch the app in action)](https://www.dropbox.com/scl/fi/ijfxociwr6569i78wasqf/demo_working_wf_scraping.mov?rlkey=6o5s08lud20x2fqbxko3jo0n5&st=87lr7t46&dl=0)
+# Wellfound Job + Messaging Service/Scraper - Manual Header/Cookie Injection 
+# Watch the App In Action :
+## 1) Job Scraping Service : [Click Here](https://www.dropbox.com/scl/fi/ijfxociwr6569i78wasqf/demo_working_wf_scraping.mov?rlkey=6o5s08lud20x2fqbxko3jo0n5&st=87lr7t46&dl=0)
+## 2) Messaging Service : [Click Here](https://www.dropbox.com/scl/fi/euycqp1kdldkh5qhdwq6q/Screen-Recording-2024-12-07-at-7.58.14-PM.mov?rlkey=1v6nqnfk89tgmoz0uk1xs9l8g&st=jd6vusfh&dl=0)
 
 ## Overview
-
-A full-stack job scraping application that enables users to search for jobs on Wellfound using custom keywords. The project leverages FastAPI for the backend, React with Vite and Tailwind CSS for the frontend, and implements sophisticated web scraping techniques to bypass anti-bot security measures.
+ 
+A full-stack job scraping application that enables users to search for jobs on Wellfound using custom keywords and messasing service. The project leverages FastAPI for the backend, React with Vite and Tailwind CSS for the frontend, and implements scraping techniques through graphql endpoints to bypass anti-bot security measures.
 
 ## Screenshots of app :
 <img width="1800" alt="Screenshot 2024-12-06 at 9 13 50 PM" src="https://github.com/user-attachments/assets/5939a0f9-d6f5-45d5-9e2c-282124f85da7">
@@ -75,6 +78,15 @@ npm run dev
         "company_type": "PromotedResult"
     },
 ]
+```
+
+### `/send-message` Endpoint
+
+#### Request Payload
+```json
+{
+  "userMessage" : "Hey there , How's it going ?"
+}
 ```
 
 ## Anti-Bot Bypass Techniques
