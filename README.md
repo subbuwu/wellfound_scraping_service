@@ -10,9 +10,11 @@ A full-stack job scraping application that enables users to search for jobs on W
 ## Screenshots of app :
 <img width="1800" alt="Screenshot 2024-12-06 at 9 13 50 PM" src="https://github.com/user-attachments/assets/5939a0f9-d6f5-45d5-9e2c-282124f85da7">
 <img width="630" alt="Screenshot 2024-12-06 at 9 14 38 PM" src="https://github.com/user-attachments/assets/005459b3-d64f-4ec5-908a-c3b1e3115280">
-
+<img width="1800" alt="Screenshot 2024-12-07 at 8 09 09 PM" src="https://github.com/user-attachments/assets/c880aad0-d274-4a42-a69d-347177dd387a">
+<img width="1800" alt="Screenshot 2024-12-07 at 8 10 08 PM" src="https://github.com/user-attachments/assets/d98c24dc-70af-4895-ab5a-4e7beea9f930">
 
 ## Docs - Checkout http://localhost:8000/docs after running local python fastapi backend server
+
 
 ## Tech Stack
 
